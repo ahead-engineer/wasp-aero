@@ -1,1 +1,689 @@
-test
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>AHEAD.engineer - Aaron Hammond Engineering and Design</title>
+<style>
+
+	:root
+	{
+		--stripe:	#2ff2;
+/* 		--bgone:	rgba(0, 91, 110, 1); */
+		--bgone:	black;
+		--bgtwo:	rgba(0, 28, 33, 1);
+		--main:		white;
+		--border:	white;
+		--blur:		#2196F3;
+		--boxblur:	#737eae54;
+	}
+
+@media (prefers-color-scheme: dark)
+{
+	:root
+	{
+	}
+}
+
+	a
+	{
+		color: var(--main);
+	}
+
+	@media (orientation: landscape)
+	{
+		:root
+		{
+			--stripegap1:	10vmin;
+			--stripegap2:	2vmin;
+		}
+	}
+
+	@media (orientation: portrait)
+	{
+		:root
+		{
+			--stripegap1:	46.75vmin;
+			--stripegap2:	9.35vmin;
+		}
+	}
+	.stripes
+	{
+		background:
+		repeating-linear-gradient(90deg,	var(--stripe), var(--stripe) 1px, #0000 1.5px, #0000 var(--stripegap1)),
+		repeating-linear-gradient(90deg,	var(--stripe), var(--stripe) 1px, #0000 1.5px, #0000 var(--stripegap2)),
+		repeating-linear-gradient(00deg,	var(--stripe), var(--stripe) 1px, #0000 1.5px, #0000 var(--stripegap1)),
+		repeating-linear-gradient(00deg,	var(--stripe), var(--stripe) 1px, #0000 1.5px, #0000 var(--stripegap2)),
+		linear-gradient(142deg,var(--bgone) 0%, var(--bgtwo) 80%);
+
+	}
+
+
+@media (prefers-color-scheme: dark)
+{
+	.stripes
+	{
+		background:
+		repeating-linear-gradient(0deg,		var(--stripe), var(--stripe) 1px, #0000 1.5px, #0000 var(--stripegap1)),
+		repeating-linear-gradient(60deg,	var(--stripe), var(--stripe) 1px, #0000 1.5px, #0000 var(--stripegap1)),
+		repeating-linear-gradient(-60deg,	var(--stripe), var(--stripe) 1px, #0000 1.5px, #0000 var(--stripegap1)),
+		repeating-linear-gradient(0deg,		var(--stripe), var(--stripe) 1px, #0000 1.5px, #0000 var(--stripegap2)),
+		repeating-linear-gradient(60deg,	var(--stripe), var(--stripe) 1px, #0000 1.5px, #0000 var(--stripegap2)),
+		repeating-linear-gradient(-60deg,	var(--stripe), var(--stripe) 1px, #0000 1.5px, #0000 var(--stripegap2)),
+/* 		linear-gradient(142deg,var(--bgone) 0%, var(--bgtwo) 80%); */
+		linear-gradient(180deg,var(--bgone) 0%, var(--bgtwo) 80%);
+
+	}
+}
+	.bg
+	{
+		background: #005B6EFF;
+		background: 		linear-gradient(142deg,var(--bgone) 0%, var(--bgtwo) 80%);
+	}
+
+	*
+	{
+/* 		border: 1px solid red; */
+	}
+	body
+	{
+		margin: 0;
+		background-color: #89b0f6;
+		color: var(--main);
+		font-family: monospace;
+		font-weight: 500;
+		font-size: 1vw;
+		text-transform: uppercase;
+		box-sizing: border-box;
+
+	}
+
+	#block h1
+	{
+		font-weight: 700;
+		text-shadow: 0 0 0.2em var(--main), 0 0 0.4em var(--main), 0 0 0.6em var(--blur);
+		margin: 0;
+
+	}
+	h2
+	{
+		margin:0;
+		font-weight: 500;
+	}
+
+
+	#page
+	{
+		margin: 1em;
+		border: solid var(--border) 0.2em;
+		display: grid;
+		box-sizing: border-box;
+	}
+
+
+
+	@media (min-aspect-ratio: 1)
+	{
+		#page
+		{
+			grid-template-columns: 34em 1fr 38em;
+			grid-template-rows: 60% 40%;
+			grid-template-areas:
+			"main main pic"
+			"bom gap block";
+			overflow: hidden;
+			height: 100%;
+		}
+
+		body
+		{
+			height:100vh;
+		}
+	}
+
+	@media (min-aspect-ratio: 9/5)
+	{
+		#page
+		{
+			grid-template-columns: 34em 1fr 38em;
+			grid-template-rows: 50% 50%;
+			grid-template-areas:
+			"main pic bom"
+			"main pic block";
+			overflow: hidden;
+			height: 100%;
+		}
+
+		#bom
+		{
+			align-self: start !important;
+		}
+
+		.page
+		{
+			align-self: center !important;
+		}
+
+		body
+		{
+			height:100vh;
+		}
+	}
+
+	@media (min-aspect-ratio: 11/5)
+	{
+		body
+		{
+			font-size: 0.7vw;
+		}
+	}
+
+	#screen
+	{
+		display: inline-block;
+		width: 100%;
+/* 		min-height: 100%; */
+		overflow: hidden;
+		position: absolute; /* absolute needed to keep swish in bounds */
+		min-height: 100vh;
+	}
+	@media (orientation: portrait)
+	{
+		body
+		{
+/* 			padding:	1em; */
+			font-size: 2.7vw;
+			min-height: 100vh;
+		}
+		#page
+		{
+/* 			grid-template-rows: 40% 10vw 20em 20em; */
+			grid-template-areas:
+			"main"
+			"pic"
+			"bom"
+			"block";
+			min-height: 100%;
+			min-height: 100svh;
+		}
+
+		.draw
+		{
+			width: 50% !important;
+			height: auto;
+		}
+
+		.hideInPortrait
+		{
+			display: none;
+		}
+	}
+
+
+	#bom, #block
+	{
+		margin: 1em;
+		border: solid var(--border) 0.3em;
+		align-self: end;
+		box-shadow: 0px 0px 20px 5px var(--boxblur);
+	}
+
+	#block
+	{
+		grid-area: block;
+	}
+
+	#block h1, #block h2
+	{
+		display:inline-block;
+	}
+
+	#block *
+	{
+		vertical-align: middle;
+	}
+
+	#bom
+	{
+		grid-area: bom;
+	}
+
+	h1
+	{
+		margin: 0.5em;
+		font-stretch: ultra-expanded;
+	}
+
+	li
+	{
+		font-size:	1.5em;
+		margin-left: 1.4em;
+	}
+
+	#bom h2
+	{
+		margin: 0.2em;
+	}
+
+	#bom  h3
+	{
+		margin:0.5em;
+	}
+
+	.overrule
+	{
+		border-top: solid var(--border) 0.2em;
+	}
+
+	.riterule
+	{
+		border-right: solid var(--border) 0.2em;
+	}
+
+
+	#path1
+	{
+		fill-opacity: 0.3 !important;
+	}
+
+	h5
+	{
+		margin:0.5em;
+		font-size:3em;
+		letter-spacing: 0.3em;
+		-webkit-text-stroke-width: 0.03em;
+		-webkit-text-stroke-color: var(--main);
+		-webkit-text-fill-color: #0000;
+	}
+	h5 > span
+	{
+		-webkit-text-stroke-width: 0.08em;
+	}
+
+	.page
+	{
+		padding: 1em;
+	}
+
+	.page h1
+	{
+		-webkit-text-stroke-width: 0.05em;
+		-webkit-text-stroke-color: var(--main);
+		-webkit-text-fill-color: #0000;
+	}
+
+	@media (orientation: portrait)
+	{
+		h1
+		{
+			font-size: 2.5em;
+			-webkit-text-stroke-width: 0.01em;
+		}
+
+		h5 > span
+		{
+			-webkit-text-stroke-width: 0.02em;
+		}
+
+		h5
+		{
+			-webkit-text-stroke-width: 0.01em;
+		}
+
+		.page h1
+		{
+			-webkit-text-stroke-width: 0.01em;
+		}
+	}
+
+	h3
+	{
+		margin: 0.5em;
+	}
+
+
+	object
+	{
+		visibility: hidden !important;
+	}
+	object, svg, img
+	{
+/* 		filter: drop-shadow(0px 0px 1em var(--border)) drop-shadow(0px 0px 3em var(--blur)); */
+	}
+
+	.services
+	{
+		padding:1em;
+	}
+
+	.services,
+	.paper,
+	.mud,
+	.murder
+	{
+		grid-area: main;
+		display: none;
+	}
+
+	.draw
+	{
+		grid-area: pic;
+		width: 80%;
+		max-height:50%;
+		margin: auto;
+	}
+
+
+
+	input[value="services"		]:checked ~ .services		{  visibility: visible; display: block;}
+	input[value="paper"			]:checked ~ .paper			{  visibility: visible; display: block;}
+	input[value="mud"			]:checked ~ .mud			{  visibility: visible; display: block;}
+	input[value="murder"		]:checked ~ .murder			{  visibility: visible; display: block;}
+
+	input[type="radio"]
+	{
+		display: none;
+	}
+
+	label
+	{
+		cursor: pointer;
+	}
+
+	input[type="radio"]:checked ~ label
+	{
+		background-color: #58baa344;
+	}
+
+	@keyframes draw
+	{
+		to
+		{
+			stroke-dashoffset: 0;
+			fill-opacity: unset;
+		}
+	}
+
+	.logo
+	{
+		display:inline-block;
+		width: 6em;
+		height: auto;
+	}
+
+	.top
+	{
+		height: 20vh;
+		height: 20svh;
+		background: 		linear-gradient(180deg, #100 10%, #cf3538 70%);
+		margin: 0
+	}
+	.thingy
+	{
+		text-align: center;
+		height: 60vh;
+		height: 60svh;
+		background-position: center;
+/* 		background-image: url("fire2.jpg"); */
+		background-size: cover;
+	}
+	.bottom
+	{
+		height: 20vh;
+		height: 20svh;
+		background: 		linear-gradient(0deg, #100 10%, #cf3538	 70%);
+		margin: 0
+	}
+	.spacer
+	{
+		height: 0;
+		height: calc(100lvh - 100svh);
+		background-color: #100;
+	}
+	.next
+	{
+		background-color: #100;
+	}
+
+	.thingy
+	{
+		display: flex;
+		align-items: center;
+	}
+
+
+
+
+
+
+
+:root {
+  --red-sheen: linear-gradient(
+    45deg,
+    hsla(12, 90%, 43%, 0.0),
+    hsla(12, 90%, 43%, 0.0) 30%,
+    hsla(170, 90%, 80%, 0.7) 45%,
+    hsla(170, 90%, 80%, 0.7) 55%,
+    hsla(12, 90%, 43%, 0.0) 70%,
+    hsla(12, 93%, 23%, 0.0)
+  );
+}
+
+
+@keyframes sheen {
+  100% {
+    transform:translate(100%, -100%);
+  }
+}
+
+[anim="sheen"]:not(.toggled)::after {
+  animation: sheen 2s infinite;
+}
+
+[anim="sheen"]::after {
+  content: "";
+  position: absolute;
+  top: -100%;
+  right: -100%;
+  bottom: -100%;
+  left: -100%;
+  background: var(--red-sheen);
+  transform:translate(-100%, 100%);
+}
+
+
+
+</style>
+</head>
+
+<body class="bg">
+	<div class="top"></div>
+
+	<div class="thingy">
+		<object type="image/svg+xml" data="waspaero.svg" class="svg draw"></object>
+	</div>
+	<div class="bottom"></div>
+
+	<div class="spacer" style="display:none">
+	</div>
+
+<div id="screen" style="display:none">
+<div id="page" class="stripes" anim="sheen">
+
+
+<input type="radio" name="pages" onchange=animateSVGPaths() id="services"		value="services" checked/>
+<input type="radio" name="pages" onchange=animateSVGPaths() id="paper"			value="paper"/>
+<input type="radio" name="pages" onchange=animateSVGPaths() id="mud"			value="mud"/>
+<input type="radio" name="pages" onchange=animateSVGPaths() id="murder"			value="murder"/>
+
+
+
+
+<!-- <object type="image/svg+xml" data="waspaero.svg" class="services svg draw"></object> -->
+<div class="services">
+	<h1>Heavy Lift Drones and UAS</h1>
+	Wasp.Aero provides heavy-lift drones and UAS.
+	<br>
+	Our systems are coaxial drones that comprise a multiplicity of motor and propellors, which are coaxial or substantially coaxial, with a weight-shift mechanism utilized for controlling rotation about its center of gravity
+	In one embodiment the motors are of hollow-shaft type, allowing power and signals to pass through the center of the motors and rotors.
+	In one embodiment the motors may rotate in opposite directions to allow control of yaw of the system.
+	The center of gravity of the device is actuated to move the system's center of gravity such as to utilise the propellors thrust vector to produce a torque about the center of gravity.
+	In one embodiment a mass is connected to the rotors by 2 pivot axes which allow for motion of the center of gravity in 2 directions with respect to the thrust vector.
+	In another embodiment a mass is connected to the rotors by a ball joint.
+	In another embodiment a mass is connected to the rotors by a sliding joint.
+	In another embodiment a multiplicity of masses is connected to the rotors.
+
+</div>
+
+
+<!-- <object type="image/svg+xml" data="mill2.svg" class="protos svg draw"></object> -->
+<div class="paper page">
+	<h1>Paper Wasp</h1>
+
+	<li>Capturing design intent
+	<li>Design for manufacture
+	<li>4 Axis CNC machining
+	<li>Manual Lathe Turning
+	<li>TIG Welding
+	<li>Sheet metal bending
+	<li>3D Printing
+</div>
+
+<!-- <object type="image/svg+xml" data="repairs.svg" class="reverse svg draw"></object> -->
+<div class="mud page">
+	<h1>Mud Wasp</h1>
+
+	<li>Custom machined bolts, pins&nbsp;+&nbsp;shafts
+	<li>Adaptor plates
+	<li>3D printed fixtures and housings
+
+</div>
+
+<!-- <object type="image/svg+xml" data="gnss.svg" class="gnss svg draw"></object> -->
+<div class="murder page">
+	<h1>Murder Hornet</h1>
+
+	<li>10Y experience with GNSS and inertial navigation systems
+	<li>Kalman filtering + state estimation
+	<li>Kinematic modelling
+	<li>Attitude, biases, and motion estimation
+	<li>Robust, real-time observation corrections
+	<li>RTK, PPP, DGNSS, atmospheric modelling
+	<li>Optimal smoothing + control
+	<li>Precise orbit determination
+
+
+</div>
+
+<div id="bom" class="bg">
+	<div style="">        <H2><label for="services"		>Drone models										</H2></label></div>
+	<div class="overrule"><h3><label for="paper"		>&bull; Paper Wasp 									</H3></label></div>
+	<div class="overrule"><h3><label for="mud"			>&bull; Mud Wasp									</H3></label></div>
+	<div class="overrule"><h3><label for="murder"		>&bull; Murder Hornet								</H3></label></div>
+
+</div>
+
+<div id="block" class="bg" style="vertical-align:middle">
+	<div style="display:inline-block"  class="riterule">
+
+		<div>					<H3><a href="tel:0434411224">												+(61) 43 4411 224			</a></h3></div>
+		<div class="overrule">	<H3>																		ABN: 88 739 214 240				</h3></div>
+		<div class="overrule">	<H3><a href="mailto:engineer@wasp.aero">									engineer@wasp.aero			</a></h3></div>
+		<div class="overrule">	<H3><a href="https://maps.app.goo.gl/cf44PnR3mSg5mW7Y8"		target=none>	Taree,NSW,2430				</a></h3></div>
+		<div class="overrule">	<H3><a href="https://www.linkedin.com/in/aaronchammond/"	target=none>	LINKEDIN					</a></h3></div>
+	</div>
+	<div style="display:inline-block">
+		<H1><label for="engineer">Wasp<br>Aero</label></h1><br>
+		<h2>Heavy<br>Lift<br>Drones</H2>
+	</div>
+	<a href="http://ahead.engineer" class="hideInPortrait"><object type="image/svg+xml" data="waspaero.svg" class="svg logo"></object></a>
+</div>
+</div>
+
+</div>
+<div class="spacer" style="display:none">&nbsp;
+</div>
+
+</body>
+
+<script type="text/javascript">
+
+function checkhash()
+{
+	let hash = new URL(document.URL).hash;
+
+	if (hash)
+	{
+		document.getElementById(hash.substr(1)).checked = true;
+		animateSVGPaths();
+	}
+}
+
+function animateSVGPaths()
+{
+	for (let object of document.querySelectorAll(".svg"))
+	{
+		if (object.contentDocument)
+		{
+			if (object.contentDocument.documentElement.tagName != "svg")
+			{
+				setTimeout(animateSVGPaths, 10);
+				return;
+			}
+
+			object.contentDocument.documentElement.classList	= object.classList;
+
+			object.replaceWith(object.contentDocument.documentElement);
+		}
+	}
+
+	for (let svg of document.querySelectorAll("svg.draw"))
+	{
+		let time = 0;
+		const paths = svg.querySelectorAll("path");
+
+		if (window.getComputedStyle(svg, null).display == "none")
+			continue;
+
+		for (let path of paths)
+		{
+			const pathLength = path.getTotalLength();
+
+			let fill = path.style.fill;
+
+			path.style.strokeDasharray	= pathLength;
+			path.style.strokeDashoffset	= pathLength;
+			// path.style.fill				= "none";
+			path.style.animation		= "none";
+			path.style.fillOpacity = 0;
+
+			const drawingTime = Math.sqrt(0.0005 * pathLength);
+
+			// Start the animation after a brief delay
+			setTimeout(() =>
+			{
+				path.style.animation	= `draw ${drawingTime}s normal forwards`;
+			}, time * 1000);
+
+			time += drawingTime;
+		}
+	}
+
+	for (let svg of document.querySelectorAll("svg"))
+	{
+		const paths = svg.querySelectorAll("path");
+		for (let path of paths)
+		{
+			// path.style.stroke		= "var(--main)";
+			// path.style.strokeWidth	= "2";
+		}
+	}
+}
+
+window.addEventListener("load", animateSVGPaths);
+window.addEventListener("load", checkhash);
+</script>
+</html>
